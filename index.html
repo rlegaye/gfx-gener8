@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Poochtooth Pattern Generator</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar__title">
+        <div class="topbar__name">Poochtooth Pattern Generator</div>
+        <div class="topbar__hint">Type a message → it repeats into an all-over houndstooth-like texture.</div>
+      </div>
+      <div class="topbar__actions">
+        <button id="downloadPngBtn" class="btn btn--primary" type="button">Download PNG</button>
+        <button id="downloadSvgBtn" class="btn" type="button">Download SVG</button>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="panel">
+        <div class="field">
+          <label for="messageInput">Hidden message</label>
+          <textarea
+            id="messageInput"
+            rows="4"
+            placeholder="Type your message…"
+            spellcheck="false"
+          ></textarea>
+          <div class="field__sub">
+            Tip: try A–Z, 0–9, spaces (characters not supported by the font may render blank).
+          </div>
+        </div>
+
+        <div class="grid2">
+          <div class="field">
+            <label for="canvasWidth">Width (px)</label>
+            <input id="canvasWidth" type="number" min="256" max="8000" step="64" value="1536" />
+          </div>
+          <div class="field">
+            <label for="canvasHeight">Height (px)</label>
+            <input id="canvasHeight" type="number" min="256" max="8000" step="64" value="1536" />
+          </div>
+        </div>
+
+        <div class="grid2">
+          <div class="field">
+            <label for="fontSize">Glyph size (px)</label>
+            <input id="fontSize" type="range" min="8" max="144" step="1" value="20" />
+            <div class="field__row">
+              <output id="fontSizeOut">20</output>
+            </div>
+          </div>
+          <div class="field">
+            <label for="letterSpacing">Character spacing (px)</label>
+            <input id="letterSpacing" type="range" min="-6" max="24" step="1" value="0" />
+            <div class="field__row">
+              <output id="letterSpacingOut">0</output>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid2">
+          <div class="field">
+            <label for="fontFamily">Font</label>
+            <select id="fontFamily">
+              <option value="Poochtooth" selected>Poochtooth (poochtooth.ttf)</option>
+              <option value="Herring">Herring (herring.otf)</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="fgColor">Ink</label>
+            <input id="fgColor" type="color" value="#111111" />
+          </div>
+          <div class="field">
+            <label for="bgColor">Paper</label>
+            <input id="bgColor" type="color" value="#f4f4f4" />
+          </div>
+        </div>
+
+        <div class="grid2">
+          <div class="field">
+            <label for="lineSpacing">Line spacing (px)</label>
+            <input id="lineSpacing" type="range" min="-50" max="60" step="1" value="0" />
+            <div class="field__row">
+              <output id="lineSpacingOut">0</output>
+            </div>
+          </div>
+          <div class="field">
+            <label for="repeatToFill">Layout</label>
+            <div class="field__sub">Choose whether to tile the message across the whole canvas.</div>
+            <div class="field field--row" style="margin: 0">
+              <input id="repeatToFill" type="checkbox" checked />
+              <label for="repeatToFill" class="label-inline">Repeat to fill canvas</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="repeatGap">Repeat gap (px)</label>
+          <input id="repeatGap" type="range" min="-50" max="200" step="1" value="0" />
+          <div class="field__row">
+            <output id="repeatGapOut">0</output>
+          </div>
+        </div>
+
+        <div class="field field--row">
+          <input id="alternateFlip" type="checkbox" checked />
+          <label for="alternateFlip" class="label-inline">Alternate flip (adds texture)</label>
+        </div>
+
+        <div class="field field--row">
+          <input id="alternateMirror" type="checkbox" />
+          <label for="alternateMirror" class="label-inline">Alternate mirror (adds texture)</label>
+        </div>
+      </section>
+
+      <section class="preview">
+        <div class="preview__stage">
+          <canvas id="patternCanvas" width="1536" height="1536"></canvas>
+        </div>
+        <div class="preview__meta">
+          <div class="preview__metaRow">
+            <div class="chip"><span class="chip__k">Font</span> <span id="fontStatus">Loading…</span></div>
+          </div>
+          <div class="preview__metaHint">Tip: zoom in (browser zoom) to read the hidden message.</div>
+        </div>
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
+
